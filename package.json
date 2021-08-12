@@ -20,7 +20,8 @@
     "lint:fix": "yarn lint --fix",
     "test:nobuild": "node test/index.js",
     "test": "yarn build && yarn test:nobuild",
-    "prepublishOnly": "yarn build && yarn lint && yarn test:nobuild"
+    "prepublishOnly": "yarn build && yarn lint && yarn test:nobuild",
+    "prepare": "npm run build"
   },
   "license": "ISC",
   "files": [
