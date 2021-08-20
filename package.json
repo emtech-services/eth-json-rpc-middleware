@@ -24,9 +24,6 @@
     "prepare": "npm run build && rm -rf ./src"
   },
   "license": "ISC",
-  "files": [
-    "src/"
-  ],
   "dependencies": {
     "@metamask/safe-event-emitter": "^2.0.0",
     "btoa": "^1.2.1",
