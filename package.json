@@ -21,11 +21,11 @@
     "test:nobuild": "node test/index.js",
     "test": "yarn build && yarn test:nobuild",
     "prepublishOnly": "yarn build && yarn lint && yarn test:nobuild",
-    "prepare": "npm run build"
+    "prepare": "npm run build && rm -rf ./src"
   },
   "license": "ISC",
   "files": [
-    "dist/"
+    "src/"
   ],
   "dependencies": {
     "@metamask/safe-event-emitter": "^2.0.0",
