@@ -11,7 +11,7 @@ function cacheIdentifierForPayload(payload, skipBlockRef) {
         ? paramsWithoutBlockTag(payload)
         : (_a = payload.params) !== null && _a !== void 0 ? _a : [];
     if (canCache(payload)) {
-        return `${payload.method}:${(0, json_stable_stringify_1.default)(simpleParams)}`;
+        return `${payload.method}:${json_stable_stringify_1.default(simpleParams)}`;
     }
     return null;
 }

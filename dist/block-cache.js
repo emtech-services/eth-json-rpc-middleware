@@ -27,7 +27,7 @@ class BlockCacheStrategy {
         // lookup block cache
         const blockCache = this.getBlockCacheForPayload(payload, requestedBlockNumber);
         // lookup payload in block cache
-        const identifier = (0, cache_1.cacheIdentifierForPayload)(payload, true);
+        const identifier = cache_1.cacheIdentifierForPayload(payload, true);
         return identifier ? blockCache[identifier] : undefined;
     }
     async set(payload, requestedBlockNumber, result) {
@@ -37,7 +37,7 @@ class BlockCacheStrategy {
             return;
         }
         // set the value in the cache
-        const identifier = (0, cache_1.cacheIdentifierForPayload)(payload, true);
+        const identifier = cache_1.cacheIdentifierForPayload(payload, true);
         if (!identifier) {
             return;
         }
@@ -46,11 +46,11 @@ class BlockCacheStrategy {
     }
     canCacheRequest(payload) {
         // check request method
-        if (!(0, cache_1.canCache)(payload)) {
+        if (!cache_1.canCache(payload)) {
             return false;
         }
         // check blockTag
-        const blockTag = (0, cache_1.blockTagForPayload)(payload);
+        const blockTag = cache_1.blockTagForPayload(payload);
         if (blockTag === 'pending') {
             return false;
         }
@@ -97,13 +97,13 @@ function createBlockCacheMiddleware({ blockTracker, } = {}) {
         block: blockCache,
         fork: blockCache,
     };
-    return (0, json_rpc_engine_1.createAsyncMiddleware)(async (req, res, next) => {
+    return json_rpc_engine_1.createAsyncMiddleware(async (req, res, next) => {
         // allow cach to be skipped if so specified
         if (req.skipCache) {
             return next();
         }
         // check type and matching strategy
-        const type = (0, cache_1.cacheTypeForPayload)(req);
+        const type = cache_1.cacheTypeForPayload(req);
         const strategy = strategies[type];
         // If there's no strategy in place, pass it down the chain.
         if (!strategy) {
@@ -114,7 +114,7 @@ function createBlockCacheMiddleware({ blockTracker, } = {}) {
             return next();
         }
         // get block reference (number or keyword)
-        let blockTag = (0, cache_1.blockTagForPayload)(req);
+        let blockTag = cache_1.blockTagForPayload(req);
         if (!blockTag) {
             blockTag = 'latest';
         }
