@@ -15,9 +15,9 @@ function createBlockRefMiddleware({ provider, blockTracker, } = {}) {
     if (!blockTracker) {
         throw Error('BlockRefMiddleware - mandatory "blockTracker" option is missing.');
     }
-    return json_rpc_engine_1.createAsyncMiddleware(async (req, res, next) => {
+    return (0, json_rpc_engine_1.createAsyncMiddleware)(async (req, res, next) => {
         var _a;
-        const blockRefIndex = cache_1.blockTagParamIndex(req);
+        const blockRefIndex = (0, cache_1.blockTagParamIndex)(req);
         // skip if method does not include blockRef
         if (blockRefIndex === undefined) {
             return next();
@@ -34,12 +34,12 @@ function createBlockRefMiddleware({ provider, blockTracker, } = {}) {
         // lookup latest block
         const latestBlockNumber = await blockTracker.getLatestBlock();
         // create child request with specific block-ref
-        const childRequest = clone_1.default(req);
+        const childRequest = (0, clone_1.default)(req);
         if (childRequest.params) {
             childRequest.params[blockRefIndex] = latestBlockNumber;
         }
         // perform child request
-        const childRes = await pify_1.default(provider.sendAsync).call(provider, childRequest);
+        const childRes = await (0, pify_1.default)(provider.sendAsync).call(provider, childRequest);
         // copy child response onto original response
         res.result = childRes.result;
         res.error = childRes.error;

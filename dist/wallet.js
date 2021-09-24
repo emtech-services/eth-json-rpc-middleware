@@ -27,22 +27,22 @@ function createWalletMiddleware({ getAccounts, processDecryptMessage, processEnc
     if (!getAccounts) {
         throw new Error('opts.getAccounts is required');
     }
-    return json_rpc_engine_1.createScaffoldMiddleware({
+    return (0, json_rpc_engine_1.createScaffoldMiddleware)({
         // account lookups
-        eth_accounts: json_rpc_engine_1.createAsyncMiddleware(lookupAccounts),
-        eth_coinbase: json_rpc_engine_1.createAsyncMiddleware(lookupDefaultAccount),
+        eth_accounts: (0, json_rpc_engine_1.createAsyncMiddleware)(lookupAccounts),
+        eth_coinbase: (0, json_rpc_engine_1.createAsyncMiddleware)(lookupDefaultAccount),
         // tx signatures
-        eth_sendTransaction: json_rpc_engine_1.createAsyncMiddleware(sendTransaction),
-        eth_signTransaction: json_rpc_engine_1.createAsyncMiddleware(signTransaction),
+        eth_sendTransaction: (0, json_rpc_engine_1.createAsyncMiddleware)(sendTransaction),
+        eth_signTransaction: (0, json_rpc_engine_1.createAsyncMiddleware)(signTransaction),
         // message signatures
-        eth_sign: json_rpc_engine_1.createAsyncMiddleware(ethSign),
-        eth_signTypedData: json_rpc_engine_1.createAsyncMiddleware(signTypedData),
-        eth_signTypedData_v3: json_rpc_engine_1.createAsyncMiddleware(signTypedDataV3),
-        eth_signTypedData_v4: json_rpc_engine_1.createAsyncMiddleware(signTypedDataV4),
-        personal_sign: json_rpc_engine_1.createAsyncMiddleware(personalSign),
-        eth_getEncryptionPublicKey: json_rpc_engine_1.createAsyncMiddleware(encryptionPublicKey),
-        eth_decrypt: json_rpc_engine_1.createAsyncMiddleware(decryptMessage),
-        personal_ecRecover: json_rpc_engine_1.createAsyncMiddleware(personalRecover),
+        eth_sign: (0, json_rpc_engine_1.createAsyncMiddleware)(ethSign),
+        eth_signTypedData: (0, json_rpc_engine_1.createAsyncMiddleware)(signTypedData),
+        eth_signTypedData_v3: (0, json_rpc_engine_1.createAsyncMiddleware)(signTypedDataV3),
+        eth_signTypedData_v4: (0, json_rpc_engine_1.createAsyncMiddleware)(signTypedDataV4),
+        personal_sign: (0, json_rpc_engine_1.createAsyncMiddleware)(personalSign),
+        eth_getEncryptionPublicKey: (0, json_rpc_engine_1.createAsyncMiddleware)(encryptionPublicKey),
+        eth_decrypt: (0, json_rpc_engine_1.createAsyncMiddleware)(decryptMessage),
+        personal_ecRecover: (0, json_rpc_engine_1.createAsyncMiddleware)(personalRecover),
     });
     //
     // account lookups

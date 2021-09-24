@@ -28,9 +28,9 @@ function createRetryOnEmptyMiddleware({ provider, blockTracker, } = {}) {
     if (!blockTracker) {
         throw Error('RetryOnEmptyMiddleware - mandatory "blockTracker" option is missing.');
     }
-    return json_rpc_engine_1.createAsyncMiddleware(async (req, res, next) => {
+    return (0, json_rpc_engine_1.createAsyncMiddleware)(async (req, res, next) => {
         var _a;
-        const blockRefIndex = cache_1.blockTagParamIndex(req);
+        const blockRefIndex = (0, cache_1.blockTagParamIndex)(req);
         // skip if method does not include blockRef
         if (blockRefIndex === undefined) {
             return next();
@@ -58,10 +58,10 @@ function createRetryOnEmptyMiddleware({ provider, blockTracker, } = {}) {
             return next();
         }
         // create child request with specific block-ref
-        const childRequest = clone_1.default(req);
+        const childRequest = (0, clone_1.default)(req);
         // attempt child request until non-empty response is received
         const childResponse = await retry(10, async () => {
-            const attemptResponse = await pify_1.default(provider.sendAsync).call(provider, childRequest);
+            const attemptResponse = await (0, pify_1.default)(provider.sendAsync).call(provider, childRequest);
             // verify result
             if (emptyValues.includes(attemptResponse)) {
                 throw new Error(`RetryOnEmptyMiddleware - empty response "${JSON.stringify(attemptResponse)}" for request "${JSON.stringify(childRequest)}"`);

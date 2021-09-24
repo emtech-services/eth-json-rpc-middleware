@@ -6,7 +6,7 @@ const providerFromEngine_1 = require("./providerFromEngine");
 function providerFromMiddleware(middleware) {
     const engine = new json_rpc_engine_1.JsonRpcEngine();
     engine.push(middleware);
-    const provider = providerFromEngine_1.providerFromEngine(engine);
+    const provider = (0, providerFromEngine_1.providerFromEngine)(engine);
     return provider;
 }
 exports.providerFromMiddleware = providerFromMiddleware;

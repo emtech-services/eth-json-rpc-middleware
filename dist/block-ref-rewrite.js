@@ -7,9 +7,9 @@ function createBlockRefRewriteMiddleware({ blockTracker, } = {}) {
     if (!blockTracker) {
         throw Error('BlockRefRewriteMiddleware - mandatory "blockTracker" option is missing.');
     }
-    return json_rpc_engine_1.createAsyncMiddleware(async (req, _res, next) => {
+    return (0, json_rpc_engine_1.createAsyncMiddleware)(async (req, _res, next) => {
         var _a;
-        const blockRefIndex = cache_1.blockTagParamIndex(req);
+        const blockRefIndex = (0, cache_1.blockTagParamIndex)(req);
         // skip if method does not include blockRef
         if (blockRefIndex === undefined) {
             return next();

@@ -9,13 +9,13 @@ const json_rpc_engine_1 = require("json-rpc-engine");
 const cache_1 = require("./utils/cache");
 function createInflightCacheMiddleware() {
     const inflightRequests = {};
-    return json_rpc_engine_1.createAsyncMiddleware(async (req, res, next) => {
+    return (0, json_rpc_engine_1.createAsyncMiddleware)(async (req, res, next) => {
         // allow cach to be skipped if so specified
         if (req.skipCache) {
             return next();
         }
         // get cacheId, if cacheable
-        const cacheId = cache_1.cacheIdentifierForPayload(req);
+        const cacheId = (0, cache_1.cacheIdentifierForPayload)(req);
         // if not cacheable, skip
         if (!cacheId) {
             return next();
@@ -46,8 +46,8 @@ function createInflightCacheMiddleware() {
         const { resolve, promise } = deferredPromise();
         activeRequestHandlers.push((handledRes) => {
             // append a copy of the result and error to the response
-            res.result = clone_1.default(handledRes.result);
-            res.error = clone_1.default(handledRes.error);
+            res.result = (0, clone_1.default)(handledRes.result);
+            res.error = (0, clone_1.default)(handledRes.error);
             resolve();
         });
         return promise;

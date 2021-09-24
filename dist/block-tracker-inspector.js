@@ -8,7 +8,7 @@ const futureBlockRefRequests = [
 ];
 // inspect if response contains a block ref higher than our latest block
 function createBlockTrackerInspectorMiddleware({ blockTracker, }) {
-    return json_rpc_engine_1.createAsyncMiddleware(async (req, res, next) => {
+    return (0, json_rpc_engine_1.createAsyncMiddleware)(async (req, res, next) => {
         var _a;
         if (!futureBlockRefRequests.includes(req.method)) {
             return next();

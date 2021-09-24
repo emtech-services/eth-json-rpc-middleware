@@ -18,7 +18,7 @@ const RETRIABLE_ERRORS = [
     'Failed to fetch',
 ];
 function createFetchMiddleware({ rpcUrl, originHttpHeaderKey, }) {
-    return json_rpc_engine_1.createAsyncMiddleware(async (req, res, _next) => {
+    return (0, json_rpc_engine_1.createAsyncMiddleware)(async (req, res, _next) => {
         const { fetchUrl, fetchParams } = createFetchConfigFromReq({
             req,
             rpcUrl,
